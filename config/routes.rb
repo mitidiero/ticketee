@@ -1,4 +1,8 @@
 Ticketee::Application.routes.draw do
+  namespace :admin do
+  get 'users/index'
+  end
+
   root "projects#index"
 
   resources :projects do
@@ -6,6 +10,10 @@ Ticketee::Application.routes.draw do
   end
 
   resources :users
+
+  namespace :admin do
+    resources :users
+  end
 
   get "/signin", to: "sessions#new"
   post "/signin", to: "sessions#create"
